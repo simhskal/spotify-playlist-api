@@ -10,23 +10,23 @@ const fetchSpotifyAccessToken = async () => {
   var clientId = process.env['SPOTIFY_CLIENT_ID']
   var clientSecret = process.env['SPOTIFY_SECRET']
 
-  let auth_token
+  let authToken
   if (clientId && clientSecret){
-    auth_token = Buffer.from(`${clientId}:${clientSecret}`, 'utf-8').toString('base64');
+    authToken = Buffer.from(`${clientId}:${clientSecret}`, 'utf-8').toString('base64');
   }
   
   const headers = {
     headers: {
-      'Authorization': `Basic ${auth_token}`,
+      'Authorization': `Basic ${authToken}`,
       'Content-Type': 'application/x-www-form-urlencoded'
     }
   }
   //make post request to SPOTIFY API for access token, sending relavent info
 
   try {
-    const token_url = 'https://accounts.spotify.com/api/token'; // move to const
-    const grant_type = qs.stringify({ 'grant_type': 'client_credentials' });
-    const authRes = await axios.post(token_url, grant_type, headers)
+    const tokenUrl = 'https://accounts.spotify.com/api/token'; // move to const
+    const grantType = qs.stringify({ 'grant_type': 'client_credentials' });
+    const authRes = await axios.post(tokenUrl, grantType, headers)
     //return access token
     //console.log('> auth token: ', authRes.data.access_token);   // todo: remove
     if (authRes.status === 200) return authRes.data.access_token
@@ -49,10 +49,10 @@ const playlistTracks = async ({ playlist_id }) => {
     return null;
   }
   //console.log('playlist_id: ', playlist_id);
-  const playlist_info_url = `https://api.spotify.com/v1/playlists/${playlist_id}`;
-  //console.log('playlist name - ', playlist_info_url);
+  const playlistInfoUrl = `https://api.spotify.com/v1/playlists/${playlist_id}`;
+  //console.log('playlist name - ', playlistInfoUrl);
   try {
-    const playlistResponse = await axios.get(playlist_info_url, {
+    const playlistResponse = await axios.get(playlistInfoUrl, {
       headers: {
         'Authorization': `Bearer ${accessToken}`
       }
@@ -65,7 +65,7 @@ const playlistTracks = async ({ playlist_id }) => {
     }
     return [];
   } catch (error) {
-    //console.log(error);
+    console.log(error);
   }
 };
 
