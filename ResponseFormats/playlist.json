@@ -1,0 +1,57 @@
+{
+  collaborative: false,
+  description: 'Running playlist recommended by friends on IG. Enjoy🏃🏻‍♀️🔥',
+  external_urls: {
+    spotify: 'https://open.spotify.com/playlist/0G63GsqhyONYWq906NStS6'
+  },
+  followers: { href: null, total: 6 },
+  href: 'https://api.spotify.com/v1/playlists/0G63GsqhyONYWq906NStS6',
+  id: '0G63GsqhyONYWq906NStS6',
+  images: [
+    {
+      height: 640,
+      url: 'https://mosaic.scdn.co/640/ab67616d0000b273298d5f6b2d1d865bbff4aac7ab67616d0000b27329cfea77e930f563c6fbaeadab67616d0000b27332f43d2b7862589792370786ab67616d0000b273b49606044ad87f720c921f0b',
+      width: 640
+    },
+    {
+      height: 300,
+      url: 'https://mosaic.scdn.co/300/ab67616d0000b273298d5f6b2d1d865bbff4aac7ab67616d0000b27329cfea77e930f563c6fbaeadab67616d0000b27332f43d2b7862589792370786ab67616d0000b273b49606044ad87f720c921f0b',
+      width: 300
+    },
+    {
+      height: 60,
+      url: 'https://mosaic.scdn.co/60/ab67616d0000b273298d5f6b2d1d865bbff4aac7ab67616d0000b27329cfea77e930f563c6fbaeadab67616d0000b27332f43d2b7862589792370786ab67616d0000b273b49606044ad87f720c921f0b',
+      width: 60
+    }
+  ],
+  name: '🏃🏻‍♀️🎵',
+  owner: {
+    display_name: 'lakshmi',
+    external_urls: { spotify: 'https://open.spotify.com/user/isuvaish' },
+    href: 'https://api.spotify.com/v1/users/isuvaish',
+    id: 'isuvaish',
+    type: 'user',
+    uri: 'spotify:user:isuvaish'
+  },
+  primary_color: null,
+  public: false,
+  snapshot_id: 'MjMsM2NiZTg5NjRkMGJkYzcwZTk1MmM3MDc1MmM1ODU3M2Q4NjE0MjFkYQ==',
+  tracks: {
+    href: 'https://api.spotify.com/v1/playlists/0G63GsqhyONYWq906NStS6/tracks?offset=0&limit=100',
+    items: [
+      [Object], [Object], [Object],
+      [Object], [Object], [Object],
+      [Object], [Object], [Object],
+      [Object], [Object], [Object],
+      [Object], [Object], [Object],
+      [Object], [Object], [Object]
+    ],
+    limit: 100,
+    next: null,
+    offset: 0,
+    previous: null,
+    total: 18
+  },
+  type: 'playlist',
+  uri: 'spotify:playlist:0G63GsqhyONYWq906NStS6'
+}
