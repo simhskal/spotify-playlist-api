@@ -7,13 +7,14 @@ const axios = require("axios").default;
 const qs = require('qs');
 
 const fetchSpotifyAccessToken = async () => {
-  var client_id = process.env['SPOTIFY_CLIENT_ID']
-  var client_secret = process.env['SPOTIFY_SECRET']
- 
-  console.log(process.env.REPLIT_DB_URL,'\n')
+  var clientId = process.env['SPOTIFY_CLIENT_ID']
+  var clientSecret = process.env['SPOTIFY_SECRET']
+
+  let auth_token
+  if (clientId && clientSecret){
+    auth_token = Buffer.from(`${clientId}:${clientSecret}`, 'utf-8').toString('base64');
+  }
   
-  const auth_token = Buffer.from(`${client_id}:${client_secret}`, 'utf-8').toString('base64');
-  const grant_type = qs.stringify({ 'grant_type': 'client_credentials' });
   const headers = {
     headers: {
       'Authorization': `Basic ${auth_token}`,
@@ -24,13 +25,18 @@ const fetchSpotifyAccessToken = async () => {
 
   try {
     const token_url = 'https://accounts.spotify.com/api/token'; // move to const
+    const grant_type = qs.stringify({ 'grant_type': 'client_credentials' });
     const authRes = await axios.post(token_url, grant_type, headers)
     //return access token
     //console.log('> auth token: ', authRes.data.access_token);   // todo: remove
-    return authRes.data.access_token;
+    if (authRes.status === 200) return authRes.data.access_token
+
+    return null;
+    
   } catch (error) {
     //on fail, log the error in console
-    console.log(error);
+    console.debug(error?.response?.data);
+    
   }
 }
 
@@ -38,6 +44,10 @@ const fetchSpotifyAccessToken = async () => {
 const playlistTracks = async ({ playlist_id }) => {
   //request token using spotifyAccessToken() function
   const accessToken = await fetchSpotifyAccessToken();
+  if (accessToken === null){
+    console.log('>> Add a valid SPOTIFY_CLIENT_ID and SPOTIFY_SECRET in your credentials')
+    return null;
+  }
   //console.log('playlist_id: ', playlist_id);
   const playlist_info_url = `https://api.spotify.com/v1/playlists/${playlist_id}`;
   //console.log('playlist name - ', playlist_info_url);
@@ -55,7 +65,7 @@ const playlistTracks = async ({ playlist_id }) => {
     }
     return [];
   } catch (error) {
-    console.log(error);
+    //console.log(error);
   }
 };
 
